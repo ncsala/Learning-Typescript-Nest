@@ -1,1 +1,1 @@
-Simpes projectos para introducirme en TypeScript y Next.js
+Simples apps para introducirme en TypeScript y Next.js
