@@ -1,29 +1,45 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateMessageDto } from './dtos/create-message.dto';
-import { MessagesService } from './messages.service'
+import { MessagesService } from './messages.service';
 
 @Controller('/messages')
 export class MessagesController {
-  messagesService: MessagesService;
+  // messagesService: MessagesService;
+  // // Se recibe una copia ya inicializada, se cumple patron
+  // // Dependency Injection
+  // constructor(messagesService: MessagesService) {
+  //   this.messagesService = messagesService;
+  // }
 
-  constructor() {
-    // DONT DO THIS ON REAL APP
-    // USE DEPENDENCY INJECTION
-    this.messagesService = new MessagesService()
-  }
+  // Todo lo de arriba es equivalente a lo siguiente.
+  // Reemplaza la inicializacion de la propiedad y la asignacion
+  constructor(public messagesService: MessagesService) {}
 
   @Get()
   listMessages() {
-    return this.messagesService.findAll()
+    return this.messagesService.findAll();
   }
 
   @Post()
   createMessage(@Body() body: CreateMessageDto) {
-    return this.messagesService.createOne(body.content)
+    return this.messagesService.createOne(body.content);
   }
 
   @Get('/:id')
-  getMessage(@Param('id') id: string) {
-    return this.messagesService.findOne(id)
+  async getMessage(@Param('id') id: string) {
+    const message = await this.messagesService.findOne(id);
+
+    if (!message) {
+      throw new NotFoundException('Message not found');
+    }
+
+    return message;
   }
 }
