@@ -1,14 +1,25 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
-import { AuthService } from './auth.service'
-import { User } from './user.entity'
+import { AuthService } from './auth.service';
+import { User } from './user.entity';
+import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
 
 @Module({
   // Este paso crea el repository por nosotros.
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [UsersController],
-  providers: [UsersService, AuthService]
+  providers: [
+    UsersService, 
+    AuthService, 
+    {
+      // Esto es para que el inteceptor tenga un alcance GLOBAL
+      // en todos los controladores.
+      provide: APP_INTERCEPTOR,
+      useClass: CurrentUserInterceptor
+    }
+  ],
 })
 export class UsersModule {}

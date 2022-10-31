@@ -3,12 +3,12 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-  "email": "agus@gmail.com",
-  "password": "pepino"
+  "email": "alvaro@gmail.com",
+  "password": "hola"
 }
 
 ### Find a particular user with a given ID
-GET http://localhost:3000/auth/1
+GET http://localhost:3000/auth/
 
 ### Find users with a given email
 GET http://localhost:3000/auth?emai=nico@gmail.com
@@ -29,9 +29,15 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-  "email": "agus@gmail.com",
-  "password": "pepino"
+  "email": "daniela@gmail.com",
+  "password": "hola"
 }
+
+### User signOut
+POST http://localhost:3000/auth/signout
+
+### Verify who owns the session
+GET http://localhost:3000/auth/whoami
 
 ### List all users
 # GET http://localhost:3000/auth/list
