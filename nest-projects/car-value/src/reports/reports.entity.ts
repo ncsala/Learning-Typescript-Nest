@@ -5,10 +5,10 @@ import { User } from 'src/users/user.entity';
 export class Report {
   @PrimaryGeneratedColumn()
   id: number;
-  
-  @Column()
-  approved: boolean;
-  
+
+  @Column({ default: 0 })
+  approved: number;
+
   // Toyota, Hyundai, Ford, etc
   @Column()
   make: string;
@@ -27,7 +27,6 @@ export class Report {
 
   @Column()
   price: number;
-
 
   @ManyToOne(() => User, (user) => user.reports)
   user: User;

@@ -1,6 +1,6 @@
-import { IsBoolean } from 'class-validator'
+import { IsBoolean, IsNumber } from 'class-validator'
 
 export class ApproveReportDto {
-  @IsBoolean()
-  approved: boolean
+  @IsNumber()
+  approved: number;
 }
