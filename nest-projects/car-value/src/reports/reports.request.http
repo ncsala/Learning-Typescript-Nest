@@ -1,0 +1,25 @@
+### REPORTS
+
+### 
+POST http://localhost:3000/REPORTS
+Content-Type: application/json
+
+{
+  "make": "Tesla",
+  "model": "Uno",
+  "year": 2022,
+  "mileage": 3000,
+  "lng": 0,
+  "lat": 0,
+  "price": 230000,
+  "approved": false
+}
+
+### Approve an existing report
+PATCH http://localhost:3000/reports/1
+Content-Type: application/json
+
+{
+  "approved": true
+}
+

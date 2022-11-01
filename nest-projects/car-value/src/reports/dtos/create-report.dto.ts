@@ -5,12 +5,16 @@ import {
   Max,
   IsLongitude,
   IsLatitude,
+  IsBoolean,
 } from 'class-validator';
 
 export class CreateReportDto {
   @IsString()
   make: string;
 
+  @IsBoolean()
+  approved: boolean;
+  
   @IsString()
   model: string;
 
@@ -34,4 +38,6 @@ export class CreateReportDto {
   @Min(0)
   @Max(1000000)
   price: number;
+
 }
+

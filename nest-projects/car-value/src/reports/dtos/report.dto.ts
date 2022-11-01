@@ -1,36 +1,38 @@
-import { Expose, Transform } from "class-transformer";
-import { User } from "src/users/user.entity";
+import { Expose, Transform } from 'class-transformer';
+import { User } from 'src/users/user.entity';
 
 export class ReportDto {
   // Solo incluimos la informacion q nos interesa
   // En este caso no queremos todo el usuario solo el userId
 
   @Expose()
-  id: number
+  id: number;
 
   @Expose()
-  price: number
+  price: number;
 
   @Expose()
-  year: number
+  year: number;
 
   @Expose()
-  lng: number
+  lng: number;
 
   @Expose()
-  lat: number
+  lat: number;
 
   @Expose()
-  make: string
+  make: string;
 
   @Expose()
-  model: string
+  model: string;
 
   @Expose()
-  mileage: number
+  mileage: number;
 
-  @Transform(({obj}) => obj.user.id)
   @Expose()
-  userId: number
+  approved: boolean;
 
+  @Transform(({ obj }) => obj.user.id)
+  @Expose()
+  userId: number;
 }
