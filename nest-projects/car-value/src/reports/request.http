@@ -1,0 +1,15 @@
+### REPORTS
+
+### 
+POST http://localhost:3000/REPORTS
+Content-Type: application/json
+
+{
+  "make": "Fiat",
+  "model": "Uno",
+  "year": 1996,
+  "mileage": 207000,
+  "lng": 0,
+  "lat": 0,
+  "price": 5000
+}
